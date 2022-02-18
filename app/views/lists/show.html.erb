@@ -1,21 +1,36 @@
-<h1><%= @list.name %></h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= cl_image_path @list.photo.key, height: 300, crop: :fill %>')">
+  <div class="container justify-content-center">
+    <h1><%= @list.name %></h1>
+  </div>
+</div>
 
-
-  <% @list.bookmarks.each do |bookmark| %>
-    <div class="movie-card">
-      <%= bookmark.movie.title %>
-      <%= link_to icon('fas', 'trash'),
-            bookmark_path(bookmark),
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card-movie">
+        <% @list.bookmarks.each do |bookmark| %>
+          <div class="card" style="width: 18rem;">
+            <%= cl_image_tag bookmark.movie.photo.key, height: 500, width: 300, crop: :fill, class: "card-img-top" %>
+            <div class="card-body">
+              <h5 class="card-title"><%= bookmark.movie.title %></h5>
+              <p class="card-text"><%= bookmark.movie.overview %></p>
+              <%= link_to icon('fas', 'trash'),
+                  bookmark_path(bookmark),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-</ul>
 
-<h2>Add a movie:</h2>
-
-<%= simple_form_for [ @list, @bookmark] do |f| %>
-  <%= f.input :movie_id, collection: @allmovies %>
-  <%= f.input :comment %>
-  <%= f.submit "Add movie", class: "btn btn-primary" %>
-<% end %>
+    <div class="col-md-4 mt-3">
+      <h3>Add a movie:</h3>
+      <%= simple_form_for [ @list, @bookmark] do |f| %>
+        <%= f.input :movie_id, collection: @allmovies %>
+        <%= f.input :comment %>
+        <%= f.submit "Add movie", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

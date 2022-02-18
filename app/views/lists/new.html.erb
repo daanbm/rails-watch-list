@@ -1,7 +1,14 @@
-<h1>Create a new list:</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h1>Create a new list</h1>
 
+      <%= simple_form_for(@list) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :picture_url %>
+        <%= f.submit "Create List", class: "btn btn-primary" %>
+      <% end %>
 
-<%= simple_form_for(@list) do |f| %>
-  <%= f.input :name %>
-  <%= f.submit "Create List", class: "btn btn-primary" %>
-<% end %>
+    </div>
+  </div>
+</div>

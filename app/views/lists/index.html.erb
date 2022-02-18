@@ -1,7 +1,16 @@
-<h1>My lists</h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= cl_image_path("on4gyaw3bkv763279crc", height: 300, crop: :fill) %>')">
+  <div class="container justify-content-center">
+    <h1>MovieLister</h1>
+    <p>Make your list, watch your movies</p>
+  </div>
+</div>
+
+
 
 <% @lists.each do |list| %>
-  <div class="list-card">
-    <h2><%= link_to list.name, list_path(list) %></h2>
+<div class="container justify-content-center">
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path list.photo.key, height: 300, crop: :fill %>')">
+    <%= link_to list.name, list_path(list) %>
   </div>
+</div>
 <% end %>

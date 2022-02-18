@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class ListsController < ApplicationController
   before_action :set_list, only: [:show]
   def index
@@ -16,6 +18,8 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
+    file = URI.open(@list.picture_url)
+    @list.photo.attach(io: file, filename: "#{@list.name}_image.png", content_type: 'image/png')
     if @list.save
       redirect_to list_path(@list)
     else
@@ -26,7 +30,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name)
+    params.require(:list).permit(:name, :picture_url)
   end
 
   def set_list
