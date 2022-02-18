@@ -1,0 +1,21 @@
+<h1><%= @list.name %></h1>
+
+
+  <% @list.bookmarks.each do |bookmark| %>
+    <div class="movie-card">
+      <%= bookmark.movie.title %>
+      <%= link_to icon('fas', 'trash'),
+            bookmark_path(bookmark),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+    </div>
+  <% end %>
+</ul>
+
+<h2>Add a movie:</h2>
+
+<%= simple_form_for [ @list, @bookmark] do |f| %>
+  <%= f.input :movie_id, collection: @allmovies %>
+  <%= f.input :comment %>
+  <%= f.submit "Add movie", class: "btn btn-primary" %>
+<% end %>

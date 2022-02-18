@@ -11,6 +11,19 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="navbar navbar-dark bg-dark">
+        <div class="container">
+          <img src="https://cdn-icons-png.flaticon.com/512/3418/3418886.png" alt="" width="40px">
+
+          <!-- turn this link into a button -->
+          <div>
+          <%= link_to "All lists", lists_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "Create a new list", new_list_path, class: "btn btn-outline-secondary" %>
+          </div>
+        </div>
+      </div>
+    <div class="container justify-content-center">
+      <%= yield %>
+    </div>
   </body>
 </html>
